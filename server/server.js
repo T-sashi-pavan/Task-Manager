@@ -13,7 +13,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 // Enhanced CORS for production
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-url.vercel.app', 'https://your-custom-domain.com'] 
+    ? (process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : true) // Allow all origins if FRONTEND_URL not set
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true,
   optionsSuccessStatus: 200
