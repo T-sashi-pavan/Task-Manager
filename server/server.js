@@ -10,12 +10,24 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
+// Enhanced CORS for production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://your-frontend-url.vercel.app', 'https://your-custom-domain.com'] 
+    : ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// Database setup - creates taskmanagerdata.db in project root
-const dbPath = path.join(__dirname, '..', 'taskmanagerdata.db');
+// Database setup - creates taskmanagerdata.db in project root or tmp for production
+const dbPath = process.env.NODE_ENV === 'production' 
+  ? path.join('/tmp', 'taskmanagerdata.db')
+  : path.join(__dirname, '..', 'taskmanagerdata.db');
+
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database:', err);
@@ -522,10 +534,37 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running', database: 'Connected' });
 });
 
+// Health check endpoint for deployment monitoring
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    message: 'Task Manager API is running', 
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Task Manager API Server', 
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth/*',
+      tasks: '/api/tasks/*',
+      users: '/api/users/*',
+      analytics: '/api/analytics/*'
+    }
+  });
+});
+
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Database file: ${dbPath}`);
+  console.log(`🚀 Task Manager API server running on port ${PORT}`);
+  console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔑 JWT Secret configured: ${JWT_SECRET ? '✅' : '❌'}`);
+  console.log(`🗄️  Database file: ${dbPath}`);
 });
 
 // Graceful shutdown

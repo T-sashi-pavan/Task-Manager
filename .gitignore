@@ -22,4 +22,24 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables (keep .env.development and .env.production for reference)
 .env
+.env.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Production builds
+build/
+dist/
+
+# Deployment
+.vercel
+.railway
+
+# Logs
+logs/
+*.log

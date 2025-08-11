@@ -11,7 +11,10 @@
     "server": "cd server && npm start",
     "server:dev": "cd server && npm run dev",
     "start:all": "concurrently \"npm run server:dev\" \"npm run dev\"",
-    "install:server": "cd server && npm install"
+    "install:server": "cd server && npm install",
+    "build:frontend": "vite build",
+    "deploy:vercel": "vercel --prod",
+    "postbuild": "echo 'Frontend build completed successfully!'"
   },
   "dependencies": {
     "@types/bcryptjs": "^3.0.0",
