@@ -18,6 +18,9 @@ export default defineConfig({
         // Don't bundle sql.js wasm files
         return id.includes('.wasm');
       }
-    }
-  }
+    },
+    assetsDir: 'assets',
+    outDir: 'dist'
+  },
+  base: '/'
 });
