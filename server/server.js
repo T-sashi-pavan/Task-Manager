@@ -13,11 +13,24 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 // Enhanced CORS for production
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? [
-        'https://task-manager-lovat-six.vercel.app', // Your Vercel frontend
-        'https://task-manager-z1zx.onrender.com',    // Your Render backend
-        process.env.FRONTEND_URL // Additional frontend URL if set
-      ].filter(Boolean) // Remove any undefined values
+    ? (origin, callback) => {
+        // Allow any Vercel deployment URL (including preview deployments)
+        const allowedOrigins = [
+          'https://task-manager-lovat-six.vercel.app', // Production Vercel URL
+          'https://task-manager-z1zx.onrender.com',    // Your Render backend
+          process.env.FRONTEND_URL // Additional frontend URL if set
+        ].filter(Boolean);
+        
+        // Allow any vercel.app subdomain for preview deployments
+        const isVercelDomain = origin && origin.includes('.vercel.app');
+        const isAllowedOrigin = allowedOrigins.includes(origin);
+        
+        if (isVercelDomain || isAllowedOrigin || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      }
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true,
   optionsSuccessStatus: 200,
