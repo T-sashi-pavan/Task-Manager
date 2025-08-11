@@ -1,47 +1,56 @@
 # 🚀 Deployment Guide
 
-This guide will help you deploy both the frontend and backend of your Task Manager application.
+This guide will help you deploy both the frontend and backend of your Task Manager application using **FREE platforms**.
 
 ## 📋 Prerequisites
 
 - GitHub account
-- Railway account (for backend) - [railway.app](https://railway.app)
+- Choose one of these FREE backend platforms:
+  - **Render.com** (RECOMMENDED - Free with database)
+  - **Vercel Serverless** (Free)
+  - **Netlify Functions** (Free)
 - Vercel account (for frontend) - [vercel.com](https://vercel.com)
 
-## 🔧 Backend Deployment (Railway)
+## � Backend Deployment (Render.com - FREE & RECOMMENDED)
 
-### Step 1: Prepare Your Repository
-1. Commit all changes to your GitHub repository
-2. Make sure your `server` folder contains all necessary files
+### Why Render?
+✅ **100% FREE** web services  
+✅ **Free PostgreSQL** database included  
+✅ **Auto-deploys** from GitHub  
+✅ **Better than Railway** free tier  
+✅ **No credit card** required  
 
-### Step 2: Deploy to Railway
-1. Go to [railway.app](https://railway.app) and sign up/login
-2. Click "New Project" → "Deploy from GitHub repo"
-3. Select your `Task-Manager` repository
-4. Railway will automatically detect your Node.js backend
+### Step 1: Deploy to Render
+1. Go to [render.com](https://render.com) and sign up with GitHub
+2. Click "New Web Service" → "Connect account" → Select your repository
+3. Configure your service:
+   ```
+   Name: task-manager-api
+   Root Directory: server
+   Environment: Node
+   Build Command: npm install
+   Start Command: npm start
+   ```
 
-### Step 3: Configure Environment Variables
-In Railway dashboard, go to your project → Variables tab and add:
+### Step 2: Configure Environment Variables
+In Render dashboard, add these environment variables:
 ```
-JWT_SECRET=your-super-secret-jwt-key-for-production-change-this
+JWT_SECRET=your-super-secret-jwt-key-change-this-to-something-random
 NODE_ENV=production
 ```
 
-### Step 4: Configure Root Directory
-1. In Railway dashboard, go to Settings
-2. Set "Root Directory" to `server`
-3. Set "Start Command" to `npm start`
+### Step 3: Deploy
+Click "Create Web Service" - Render will automatically deploy your backend!
 
-### Step 5: Get Your Backend URL
-- After deployment, Railway will provide a URL like: `https://your-app-name.railway.app`
-- Copy this URL for frontend configuration
+### Step 4: Get Your Backend URL
+After deployment, you'll get a URL like: `https://task-manager-api.onrender.com`
 
 ## 🌐 Frontend Deployment (Vercel)
 
 ### Step 1: Update Environment Variables
-1. Update `.env.production` file with your Railway backend URL:
+1. Update `.env.production` file with your Render backend URL:
 ```env
-VITE_API_URL=https://your-app-name.railway.app/api
+VITE_API_URL=https://task-manager-api.onrender.com/api
 ```
 
 ### Step 2: Deploy to Vercel
@@ -52,7 +61,7 @@ VITE_API_URL=https://your-app-name.railway.app/api
 ### Step 3: Configure Environment Variables
 In Vercel dashboard, go to Settings → Environment Variables and add:
 ```
-VITE_API_URL = https://your-app-name.railway.app/api
+VITE_API_URL = https://task-manager-api.onrender.com/api
 ```
 
 ### Step 4: Configure Build Settings

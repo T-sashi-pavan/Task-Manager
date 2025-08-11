@@ -117,6 +117,19 @@ A comprehensive full-stack productivity tracker application built with React Typ
    npm run start:all
    ```
 
+## 🚀 **FREE Deployment**
+
+Deploy your Task Manager for **FREE** using:
+- **Backend**: Render.com (Free tier with database)
+- **Frontend**: Vercel (Free tier)
+
+Quick deployment:
+```bash
+./deploy-render.sh  # Follow the guide for FREE deployment
+```
+
+See `FREE-DEPLOYMENT.md` for complete free deployment guide.
+
 ## 📂 Project Structure
 
 ```
