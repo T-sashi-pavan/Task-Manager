@@ -2,11 +2,15 @@
 
 A comprehensive full-stack productivity tracker application built with React TypeScript frontend and Node.js backend, featuring real-time task management, time tracking, notifications, and analytics.
 
+## 🚀 **Live Demo**
+🌐 **Try it now:** [https://task-manager-lovat-six.vercel.app/](https://task-manager-lovat-six.vercel.app/)
+
 ![Task Manager](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933.svg)
 ![SQLite](https://img.shields.io/badge/Database-SQLite-003B57.svg)
+![Live Demo](https://img.shields.io/badge/Live%20Demo-Available-brightgreen.svg?style=flat&logo=vercel)
 
 ## 🌟 Features
 
@@ -260,9 +264,25 @@ If you find any bugs or issues, please create an issue on GitHub with:
 - [ ] Export to different file formats
 - [ ] Integration with third-party services
 
+## 🌐 **Live Deployment**
+
+This application is deployed and running live:
+
+- **🚀 Frontend**: [https://task-manager-lovat-six.vercel.app/](https://task-manager-lovat-six.vercel.app/) (Vercel)
+- **🔧 Backend**: [https://task-manager-z1zx.onrender.com](https://task-manager-z1zx.onrender.com) (Render)
+- **🗄️ Database**: SQLite on Render (FREE tier)
+
+### 🎯 **Try the Live Demo:**
+1. Visit: [https://task-manager-lovat-six.vercel.app/](https://task-manager-lovat-six.vercel.app/)
+2. Register a new account or login
+3. Create tasks with reminders
+4. Experience real-time notifications
+5. Track your productivity!
+
 ---
 
 <div align="center">
+  <h3>🌐 <a href="https://task-manager-lovat-six.vercel.app/">Live Demo Available</a> 🌐</h3>
   <p>⭐ Star this repository if you find it helpful!</p>
   <p>Made with ❤️ by T-sashi-pavan</p>
 </div>
